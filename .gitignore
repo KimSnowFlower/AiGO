@@ -1,0 +1,14 @@
+# node_modules 폴더 무시
+node_modules/
+
+# 환경 변수 파일 무시
+.env
+
+# 로그 파일 무시
+*.log
+
+# OS와 IDE에서 생성되는 불필요한 파일 무시
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
