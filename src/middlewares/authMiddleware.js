@@ -1,10 +1,12 @@
 const jwt = require('jsonwebtoken');
 
 exports.authenticateToken = (req, res, next) => {
+    // Bearer <token>
     const token = req.hearders['authorization']?.split(' ')[i];
 
-    if(!token)
+    if(!token) {
         return res.status(401).json({ message: 'Access token is missing or invalid.' });
+    }
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -16,4 +18,4 @@ exports.authenticateToken = (req, res, next) => {
     } catch (error) {
         res.status(403).json({ message: 'Invalid or expired token.' });
     }
-}
+};
