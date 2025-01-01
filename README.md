@@ -135,3 +135,15 @@ service는 해당 기능에 대한 비지니스 로직 <br>
 컨트롤러에서 사용자가 요청한 기능을 확인하고 <br>
 그것에 맞는 적절한 service를 사용하여 응답해야 한다! <br>
 <hr>
+
+# 2024/1/1 내용
+
+<h3>1. authController 수정</h3>
+Register와 Login Controller에 일부 코드를 DB 테이블에 맞추어 수정
+
+<h3>2. validationMiddleware 수정</h3>
+validation에서 DB 테이블에 맞게 NOT NULL인 것을 생각하여 수정
+
+<h3>3. authService 수정</h3>
+service 코드에서 sql 구문을 이용하여 수정<br>
+erorr의 경우 thrown new Error로 처리<br>

@@ -9,10 +9,10 @@ exports.register = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, age, studentId, department, username, password } = req.body;
+    const { name, age, phone, password, region } = req.body;
 
     try {
-        const result = await authService.registerUser({ name, age, studentId, department, username, password});
+        const result = await authService.registerUser({ name, age, phone, password, region });
 
         // 서비스에서 반환한 결과를 그대로 응답
         res.status(201).json(result);
@@ -25,13 +25,19 @@ exports.register = async (req, res) => {
 
 // Login
 exports.login = async (req, res) => {
-    const { username, password } = req.body;
+    const erros = validationResult(req);
+
+    if(!erros.isEmpty()) {
+        return res.status(400).json({ erros: erros.array() });
+    }
+
+    const { phone, password } = req.body;
 
     try {
-        const response = await authService.loginUser(username, password);
+        const response = await authService.loginUser(phone, password);
 
-        res.status(200).json(response);
+        res.status(201).json(response);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ erorror: 'Login failed', details: erros.message });
     }
 };
