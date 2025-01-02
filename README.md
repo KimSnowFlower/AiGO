@@ -136,7 +136,7 @@ service는 해당 기능에 대한 비지니스 로직 <br>
 그것에 맞는 적절한 service를 사용하여 응답해야 한다! <br>
 <hr>
 
-# 2024/1/1 내용
+# 2025/1/1 내용
 
 <h3>1. authController 수정</h3>
 Register와 Login Controller에 일부 코드를 DB 테이블에 맞추어 수정
@@ -147,3 +147,26 @@ validation에서 DB 테이블에 맞게 NOT NULL인 것을 생각하여 수정
 <h3>3. authService 수정</h3>
 service 코드에서 sql 구문을 이용하여 수정<br>
 erorr의 경우 thrown new Error로 처리<br>
+<hr>
+
+# 2025/1/2 내용
+
+<h3>1. 필요한 package install</h3>
+- mysql, twilio
+
+<h3>2. config에 twilio.js 추가</h3>
+- twilio에 필요한 SID와 token 사용하기 위한 코드 추가
+
+<h3>3. auth 관련 코드들 수정</h3>
+- authController는 기본적인 데이터 전달 코드 수정 <br>
+- auth는 라우터에 send-code 부분 추가<br>
+- authService는 로직 개선 및 sms 인증을 위한 코드 추가 및 회원가입 로직 수정<br>
+
+<h3>4. verification_codes 테이블 추가</h3>
+- sms 인증을 위한 테이블 추가
+
+<h3>Issue</h3>
+<b>이슈 내용: </b> <br>
+E:\AiGO\src\services\authService.js:89 <br>
+  sendVerificationCode, <br>
+여러가지 이유를 찾아서 수정했지만 아직 고치지 못 했음.

@@ -1,14 +1,16 @@
-const express = require('expresss');
-const { login, register } = require('../controllers/authController');
-const { authenticateToken } = require('../middlewares/authMiddleware');
-const { validateAuthInput } = require('../middlewares/validationMiddleware');
+const express = require('express');
+const authController = require('../controllers/authController');
+const { validateAuthInput, validatePhoneInput } = require('../middlewares/validationMiddleware');
 
 const router = express.Router();
 
-// Post /api/auth/register
-router.post('/register', validateAuthInput, register);
+// POST /api/auth/send-code - 인증 코드 전송
+router.post('/send-code', validatePhoneInput, authController.sendVerificationCode);
 
-// Post /api/auth/login
-router.post('/login', validateAuthInput, login);
+// POST /api/auth/register - 회원가입
+router.post('/register', validateAuthInput, authController.register);
+
+// POST /api/auth/login - 로그인
+router.post('/login', validateAuthInput, authController.login);
 
 module.exports = router;
