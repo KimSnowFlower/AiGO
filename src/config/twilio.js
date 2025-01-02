@@ -1,10 +1,11 @@
+require('dotenv').config();
 const twilio = require('twilio');
 
 // Twilio 계정 SID
-const acccountSid = 'ACb388d1f17d2928e0015e1b67f861d9ef';
+const acccountSid = process.env.TWILIO_ACCOUNT_SID;
 
 // Twilio 인증 토큰
-const authToken = 'f469fbb8b19c4b60079ccfb15b209534';
+const authToken = process.env.TWILIO_AUTH_TOKEN; 
 
 const twilio_client = twilio(acccountSid, authToken);
 
