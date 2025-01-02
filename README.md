@@ -170,3 +170,39 @@ erorr의 경우 thrown new Error로 처리<br>
 E:\AiGO\src\services\authService.js:89 <br>
   sendVerificationCode, <br>
 여러가지 이유를 찾아서 수정했지만 아직 고치지 못 했음.
+<hr>
+
+# 2025/1/3 내용
+
+<h3>1. issue 해결</h3>
+! npm start를 하면 계속 method is not defined가 나는 것이 문제였다.<br>
+그 이유는 김평화가 제대로 exports를 이해하지 못하고 authController와 그 외 코드에 <br>
+계속해서 module.exports를 작성하니 const로 만들어진 코드가 없는데 <br>
+npm start로 코드를 실행하니 당연히 문제가 발생한 것이다. => 결론 김평화 바보<br>
+
+<h3>2. exports의 그럼 무엇인가?</h3>
+exports는 Node.js 모듈 시스템에서 사용되는 객체이며, 각 모듈에서 외부로 내보낼 값을 정의하는 데 사용한다.<br>
+기본적으로 exports와 module.exports로 객체의 참조를 가리킨다.<br><br>
+
+exports와 module.exports의 관계 <br>
+module.exports는 모듈에서 실제로 내보낼 값을 지정하는 객체 -> 할당된 값은 require를 통해 다른 파일에서 가져올 수 있다. <br>
+exports는 기본적으로 module.exports를 참조하는 객체이다. 즉, exports에 속성을 추가하면 module.exports에 자동으로 추가된다. <br>
+=> 이 차이를 모르고 module.exports와 exports를 두개 다 사용해서 오류가 뜸. <br><br>
+
+exports는 기본적으로 module.exports를 참조하고 있기 때문에, exports 객체에 속성을 추가하면 그 속성은 module.exports에도 반영된다.
+
+exports의 주요 특징 <br>
+- 기본 참조: exports는 기본적으로 module.exports와 동일하게 작동합니다. 하지만 exports에 값을 할당하거나 module.exports에 할당된 값을 직접 변경할 수 있습니다. <br>
+- 속성 추가: exports에 속성이나 메서드를 추가하면 module.exports에 자동으로 반영됩니다. <br>
+- 값을 변경하려면: exports 객체에 새로운 객체나 값을 할당하지 않도록 해야 합니다. 예를 들어, exports = {}를 하게 되면 exports가 module.exports와 분리되어 값을 내보낼 수 없게 됩니다. 이럴 경우에는 module.exports를 직접 사용하는 것이 좋습니다. <br>
+
+exports와 module.exports의 차이점 <br>
+- 속성 추가: exports는 속성을 추가하는 용도로만 사용하고, 값을 전체적으로 변경하려면 module.exports를 사용해야 합니다. <br>
+- 재할당: exports를 완전히 다른 값으로 재할당하면 module.exports와 연결이 끊어져서 의도한 대로 동작하지 않게 됩니다. 반면, module.exports는 완전히 새로운 객체를 할당할 수 있습니다.
+<hr>
+<b>요약</b><br>
+
+- exports는 기본적으로 module.exports의 참조로, 모듈의 속성이나 메서드를 외부로 내보내는 데 사용됩니다.
+- exports.methodName과 같이 메서드를 추가하는 방식으로 여러 메서드를 내보낼 수 있습니다.
+- 모듈의 반환값을 변경하려면 exports가 아니라 module.exports를 사용해야 합니다.
+<hr>

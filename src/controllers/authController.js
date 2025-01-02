@@ -70,9 +70,3 @@ exports.login = async (req, res) => {
         res.status(400).json({ error: 'Login failed', details: error.message });
     }
 };
-
-module.exports = {
-    sendVerificationCode,
-    register,
-    login
-};
