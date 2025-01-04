@@ -70,3 +70,24 @@ exports.login = async (req, res) => {
         res.status(400).json({ error: 'Login failed', details: error.message });
     }
 };
+
+exports.changePassword = async (req, res) => {
+    const erros = validationResult(req);
+
+    if(!erros.isEmpty()) {
+        return res.status(400).json({ erros: errors.array() });
+    }
+
+    const { currentPassword, newPassword } = req.body;
+    
+    // 로그인된 사용자 ID
+    const userId = req.user.id;
+
+    try {
+        // 비밀번호 변경 서비스 호출
+        const result = await authService.changeUserPassword(userId, currentPassword, newPassword)
+    } catch (error) {
+        console.error('Error changing password:', error);
+        res.status(400).json({ error: 'Password update failed', details: error.message });
+    }
+};

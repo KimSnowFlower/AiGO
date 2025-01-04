@@ -13,4 +13,7 @@ router.post('/register', validateAuthInput, authController.register);
 // POST /api/auth/login - 로그인
 router.post('/login', validateAuthInput, authController.login);
 
+// Patch /api/auth/
+router.patch('/password', validateAuthInput, authController.changePassword);
+
 module.exports = router;

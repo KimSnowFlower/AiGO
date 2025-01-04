@@ -93,3 +93,29 @@ exports.loginUser = async ({ phone, password }) => {
     throw new Error('Login failed');
   }
 };
+
+// 비밀번호 변경 - 유저가 설정에서 바꾸는 과정
+exports.changeUserPassword = async (userId, currentPassword, newPassword) => {
+  try {
+    const sql = 'SELECT * FROM users WHERE id = ?';
+    const [results] = await db.query(sql, [userId]);
+
+    if(results.length === 0) {
+      throw new Error('User not found');
+    }
+
+    if(results.password !== currentPassword) {
+      throw new Error('Invalid current password');
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    const changePasswordSql = 'UPDATE users SET password = ? WHERE id = ?';
+    await db.query(changePasswordSql, [hashedPassword, userId]);
+
+    return { message: 'Password changed successfully' };
+  } catch(error) {
+    console.error('Error changing password:', error);
+    throw new Error('Failded to change password');
+  } 
+};

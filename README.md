@@ -206,3 +206,12 @@ exports와 module.exports의 차이점 <br>
 - exports.methodName과 같이 메서드를 추가하는 방식으로 여러 메서드를 내보낼 수 있습니다.
 - 모듈의 반환값을 변경하려면 exports가 아니라 module.exports를 사용해야 합니다.
 <hr>
+
+# 2025/1/4 내용
+<숙취 이슈 간단 코딩>
+
+<h3>1. 비밀번호 변경 찾기 구현</h3>
+changeUserPassword 구현 <br>
+현 비밀번호와 신규 비밀번호만 가지고 변경 가능. <br>
+여기서 지금 확인해야 하는 것은 비밀번호 잊어버려서 바꿔야 하는 경우도 구현 필요 <br>
+<hr>
