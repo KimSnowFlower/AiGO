@@ -1,6 +1,7 @@
 const express = require('express');
 const authController = require('../controllers/authController');
 const { validateAuthInput, validatePhoneInput } = require('../middlewares/validationMiddleware');
+const { kakaoLogin } = require('../services/kakaoLoginService');
 
 const router = express.Router();
 
@@ -15,5 +16,8 @@ router.post('/login', validateAuthInput, authController.login);
 
 // Patch /api/auth/
 router.patch('/password', validateAuthInput, authController.changePassword);
+
+// GET /api/auth/kakao/callback - 카카오 로그인 콜백
+router.get('/kakao/callback', kakaoLogin);
 
 module.exports = router;

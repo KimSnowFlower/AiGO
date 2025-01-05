@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
 const authService = require('../services/authService');
+const kakaoService = require('../services/kakaoLoginService');
 
 // 인증 코드 전송
 exports.sendVerificationCode = async (req, res) => {
@@ -91,3 +92,30 @@ exports.changePassword = async (req, res) => {
         res.status(400).json({ error: 'Password update failed', details: error.message });
     }
 };
+
+exports.kakaoLogin = async (req, res) => {
+    const { code } = req.query;
+
+    try {
+        // 1. 카카오에서 Access Token 받아오기
+        const accessToken = await kakaoService.getKakaoToken(code);
+
+        // 2. Access Token으로 사용자 정보 요청
+        const userInfo = await kakaoService.getKakaoUserInfo(accessToken);
+
+        // 3. 필요한 정보 추출 및 로직 처리
+        const { id, kakao_account } = kakaoUser;
+        const email = kakao_account.email;
+        const nickname = kakao_account.profile.nickname;
+
+        // 4. 사용자 정보 저장/업데이트 (DB 로직 추가)
+        // 예: 사용자 정보가 없으면 새로 저장
+        // await userRepository.findOrCreate({ id, email, nickname });
+
+        // 5. 프론트엔드로 사용자 정보 전달
+        res.status(200).json({ id, email, nickname });
+    } catch (error) {
+        console.error('Kakao login error:', error);
+        res.status(500).json({ error: 'Kakao login failed', details: error.message });
+    }
+}
