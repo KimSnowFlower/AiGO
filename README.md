@@ -224,6 +224,10 @@ changeUserPassword 구현 <br>
 하지만 프론트엔드에서 테스트 필요한 기능 <br>
 <hr>
 
-# 2025/1/6~7 내용
+# 2025/1/6~13 내용
 
 활동집 제작으로 인한 휴무.
+
+# 2025/1/14 내용
+
+authMiddleware = JWT Middleware 코드 수정
