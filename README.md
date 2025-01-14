@@ -253,6 +253,14 @@ require('dotenv').config({ path: '../.env' }); <br>
 되도록 그냥 npm start를 사용하자
 <hr>
 
-<h3> API TEST </h3>
-- /register 완료
-- /login 완료
+<h3>카카오맵 api 기본 테스트 완성</h3>
+카카오맵 기본 api 생성 완료 <br>
+주소 : /api/location/get-location <br>
+테스트는 오로지 백엔드 JSON 결과만 봄 <br>
+!!하지만 이게 화면에 잘 나오는지 확인 필요!! <br>
+<hr>
+
+<h3> API TEST 완료</h3>
+- /api/auth/register : 회원가입 하기<br>
+- /api/auth/login : 로그인 하기<br>
+- /api/location/get-location : 카카오톡 맵 가져오기<br>

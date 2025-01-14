@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' });  // 경로를 상위 폴더로 지정
+require('dotenv').config({ path: '../.env' });
 const mysql = require('mysql2/promise');
 
 // 데이터베이스 연결 설정을 환경 변수로 관리
