@@ -231,3 +231,28 @@ changeUserPassword 구현 <br>
 # 2025/1/14 내용
 
 authMiddleware = JWT Middleware 코드 수정
+
+# 2025/1/15 내용
+
+<h3>require('dotenv).config() 주의점</h3>
+npm start으로 하면 require('dotenv').cofing()가 제대로 실행하지만, <br>
+node server.js로 실행하면 undefined가 뜬다. <br>
+그 이유는 둘의 실행 차이가 있다. <br>
+package.json에서 npm start는 src/server.js까지 건들기 때문에 <br>
+루트 파일과 모든 파일을 찾아서 로드하지만 <br>
+node server.js는 package.json도 따로 없고 .env 파일과 다른 루트에 있기 때문에 <br>
+루트 파일에 존재하는 .env를 쓰기 위해서는 정확한 위치를 명시해야 한다. <br> 
+<hr>
+
+require('dotenv').config({ path: '../.env' }); <br>
+위처럼 정확한 경로를 알려주고 설정해야 node server.js로 실행하면 <br>
+정확하게 .env -> config 파일들에 정보가 넘어간다. <br>
+이 이유를 몰라서 강냉톤에서도 실수하고 지금도 실수했다. <br>
+정확하게 알아둘 것. <br>
+나는 그냥 node server.js를 익숙하게 사용하다보니 틀릴 수 있는 문제였다. <br>
+되도록 그냥 npm start를 사용하자
+<hr>
+
+<h3> API TEST </h3>
+- /register 완료
+- /login 완료

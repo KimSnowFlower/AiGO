@@ -1,3 +1,4 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 exports.authenticateToken = (req, res, next) => {
@@ -11,7 +12,7 @@ exports.authenticateToken = (req, res, next) => {
 
     try {
         // 검증
-        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         // 검증된 사용자 정보 추가
         req.user = decoded;
