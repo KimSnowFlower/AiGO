@@ -264,3 +264,7 @@ require('dotenv').config({ path: '../.env' }); <br>
 - /api/auth/register : 회원가입 하기<br>
 - /api/auth/login : 로그인 하기<br>
 - /api/location/get-location : 카카오톡 맵 가져오기<br>
+
+# 2025/1/16 내용
+
+휴무
