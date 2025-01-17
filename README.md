@@ -268,3 +268,13 @@ require('dotenv').config({ path: '../.env' }); <br>
 # 2025/1/16 내용
 
 휴무
+<hr>
+
+# 2025/1/17 내용
+
+<h3>사용자 정보 확인을 위한 api 생성</h3>
+
+<h3> API TEST 필요</h3>
+- /api/user/profile : 유저 정보 가져오기 <br>
+용도 : 설정 화면에 유저 정보 사용하기 위해서 만듬<br>
+<hr>
