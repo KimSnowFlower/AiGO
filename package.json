@@ -2,10 +2,12 @@
   "name": "aigo",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "build": "pkg . --output aigo"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +28,19 @@
   },
   "devDependencies": {
     "dotenv": "^16.4.7",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "assets": [
+      "node_modules/**/*"
+    ],
+    "scripts": "src/server.js",
+    "targets": [
+      "node16-linux-x64",
+      "node16-macos-x64",
+      "node16-win-x64"
+    ],
+    "outputPath": "./dist"
   }
 }
