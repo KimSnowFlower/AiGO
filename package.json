@@ -1,21 +1,19 @@
 {
-  "name": "aigo",
+  "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.js",
   "bin": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "build": "pkg . --output aigo"
+    "build": "pkg . --out-path dist --targets node16-linux-x64,node16-macos-x64,node16-win-x64"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "aigo": "file:",
-    "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
@@ -24,23 +22,31 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.12.0",
     "openai": "^4.79.1",
+    "server": "file:",
     "twilio": "^5.4.0"
   },
   "devDependencies": {
     "dotenv": "^16.4.7",
     "nodemon": "^3.1.9",
+    "parcel": "^2.13.3",
     "pkg": "^5.8.1"
   },
   "pkg": {
     "assets": [
-      "node_modules/**/*"
+      "src/**/*.js",
+      "src/config/**/*.js"
     ],
-    "scripts": "src/server.js",
-    "targets": [
-      "node16-linux-x64",
-      "node16-macos-x64",
-      "node16-win-x64"
+    "scripts": [
+      "src/**/*.js",
+      "src/routes/**/*.js",
+      "src/controllers/**/*.js"
     ],
-    "outputPath": "./dist"
+    "config": {
+      "exclude": [
+        "node_modules/axios/**",
+        "node_modules/bcryptjs/**",
+        "node_modules/mysql2/**"
+      ]
+    }
   }
 }

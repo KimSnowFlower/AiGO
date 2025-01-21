@@ -1,6 +1,6 @@
-const profileService = require('../services/profileService');
+import profileService from '../services/profileService.js';
 
-exports.getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
     try {
         const userId = req.user.id;
         const profile = await profileService.getProfile(userId);

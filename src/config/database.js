@@ -1,5 +1,5 @@
-require('dotenv').config({ path: '../.env' });
-const mysql = require('mysql2/promise');
+import 'dotenv/config';
+import mysql from 'mysql2/promise';
 
 // 데이터베이스 연결 설정을 환경 변수로 관리
 const db = mysql.createPool({
@@ -10,4 +10,4 @@ const db = mysql.createPool({
   database: process.env.DB_NAME,
 });
 
-module.exports = db;
+export default db;

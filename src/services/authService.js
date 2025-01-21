@@ -1,9 +1,9 @@
-const bcrypt = require('bcryptjs');
-const db = require('../config/database');
-const { generateToken } = require('../config/jwt');
+import bcrypt from 'bcryptjs';
+import db from '../config/database.js';
+import { generateToken } from '../config/jwt.js';
 
 // 회원가입
-exports.registerUser = async ({ name, age, phone, password, region }) => {
+export const registerUser = async ({ name, age, phone, password, region }) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -21,7 +21,7 @@ exports.registerUser = async ({ name, age, phone, password, region }) => {
 };
 
 // 로그인
-exports.loginUser = async (phone, password) => {
+export const loginUser = async (phone, password) => {
     try {
         const sql = 'SELECT * FROM users WHERE phone = ?';
         const [results] = await db.query(sql, [phone]);
@@ -46,7 +46,7 @@ exports.loginUser = async (phone, password) => {
 };
 
 // 비밀번호 변경
-exports.changeUserPassword = async (userId, currentPassword, newPassword) => {
+export const changeUserPassword = async (userId, currentPassword, newPassword) => {
     try {
         const sql = 'SELECT * FROM users WHERE id = ?';
         const [results] = await db.query(sql, [userId]);

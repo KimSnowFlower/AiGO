@@ -1,5 +1,5 @@
-const axios = require('axios');
-const openApi = require('../config/openApi');
+import axios from 'axios';
+import openApi from '../config/oepnAi.js';
 
 /**
  * 출발지와 도착지를 기반으로 OpenAI를 통해 경로 안내 프롬프트를 생성하는 함수
@@ -8,7 +8,7 @@ const openApi = require('../config/openApi');
  * @param {string} text - 추가 프롬프트 텍스트
  * @returns {string} - OpenAI가 생성한 안내 텍스트
  */
-exports.getRoute = async (origin, destination, text) => {
+export const getRoute = async (origin, destination, text) => {
     // 입력값 검증
     if (!origin || !destination || !text) {
         throw new Error('출발지, 도착지 및 프롬프트 텍스트는 필수입니다.');

@@ -1,7 +1,7 @@
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
+import 'dotenv/config'; // dotenv.config()를 대신함
+import jwt from 'jsonwebtoken';
 
-exports.authenticateToken = (req, res, next) => {
+export const authenticateToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer')) {

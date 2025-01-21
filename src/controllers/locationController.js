@@ -1,6 +1,6 @@
-const locationService = require('../services/locationService');
+import locationService from '../services/locationService.js';
 
-exports.getLocation = async (req, res) => {
+export const getLocation = async (req, res) => {
   const { address } = req.query;
 
   if (!address) {

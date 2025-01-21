@@ -1,8 +1,8 @@
-const express = require('express');
-const routeHelperController = require('../controllers/routeHelperController');
+import express from 'express';
+import routeHelperController from '../controllers/routeHelperController';
 
 const router = express.Router();
 
 router.post('/routeHelper', routeHelperController.routeHelper);
 
-module.exports = router;
+export default router;

@@ -1,10 +1,10 @@
-const routeHelperService = require('../services/routeHelperService');
+import routeHelperService from '../services/routeHelperService.js';
 
-exports.routeHelper = async (req, res) => {
+export const routeHelper = async (req, res) => {
     try {
         const { origin, destination, text } = req.body;
         const route = await routeHelperService.getRoute(origin, destination, text);
-        
+
         res.status(200).json(route);
     } catch (error) {
         res.status(400).json({ error: error.message });

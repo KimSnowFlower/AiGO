@@ -1,7 +1,7 @@
-const axios = require('axios');
-const kakaoConfig = require('../config/kakaoConfig');
+import axios from 'axios';
+import kakaoConfig from '../config/kakaoConfig.js';
 
-exports.getKakaoToken = async (code) => {
+export const getKakaoToken = async (code) => {
     const url = 'https://kauth.kakao.com/oauth/token';
 
     const params = {
@@ -20,7 +20,7 @@ exports.getKakaoToken = async (code) => {
     }
 };
 
-exports.getKakaoUserInfo = async (accessToken) => {
+export const getKakaoUserInfo = async (accessToken) => {
     const url = 'https://kapi.kakao.com/v2/user/me';
 
     try {

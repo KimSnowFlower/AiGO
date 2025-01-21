@@ -1,7 +1,7 @@
-const { body } = require('express-validator');
+import body from 'express-validator';
 
 // 회원가입 입력 검증
-exports.validateAuthInput = [
+export const validateAuthInput = [
   body('name')
     .isString().withMessage('Name must be a string')
     .notEmpty().withMessage('Name is required'),
@@ -20,7 +20,7 @@ exports.validateAuthInput = [
 ];
 
 // 로그인 입력 검증
-exports.validateLoginInput = [
+export const validateLoginInput = [
   body('phone')
     .matches(/^\d{1,15}$/).withMessage('Phone must be a numeric string of up to 15 digits')
     .notEmpty().withMessage('Phone is required'),
@@ -30,7 +30,7 @@ exports.validateLoginInput = [
 ];
 
 // 비밀번호 변경 입력 검증
-exports.validatePasswordChangeInput = [
+export const validatePasswordChangeInput = [
   body('currentPassword')
       .isLength({ min: 6 })
       .withMessage('Current password must be at least 6 characters long.'),

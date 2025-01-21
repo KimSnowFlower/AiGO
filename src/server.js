@@ -1,10 +1,10 @@
-require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const http = require('http');
-const routes = require('./routes');
-const db = require('./config/database'); // db.js에서 연결을 가져옴
+import 'dotenv/config';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import http from 'http';
+import routes from './routes/index.js'; // 확장자 `.js` 명시 필요
+import db from './config/database.js'; // 확장자 `.js` 명시 필요
 
 const app = express();
 const server = http.createServer(app);

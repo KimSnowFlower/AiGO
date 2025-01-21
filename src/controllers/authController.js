@@ -1,8 +1,8 @@
-const { validationResult } = require('express-validator');
-const authService = require('../services/authService');
+import validationResult from 'express-validator';
+import authService from '../services/authService.js';
 
 // 회원가입
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
 };
 
 // 로그인
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -40,7 +40,7 @@ exports.login = async (req, res) => {
 };
 
 // 비밀번호 변경
-exports.changePassword = async (req, res) => {
+export const changePassword = async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {

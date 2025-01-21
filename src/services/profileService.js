@@ -1,6 +1,6 @@
-const db = require('../config/database')
+import db from '../config/database';
 
-exports.getProfile = async (userId) => {
+export const getProfile = async (userId) => {
     try{
         const [rows] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
 

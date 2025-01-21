@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' });
+import 'dotenv/config';
 
 /*
 const KAKAO_CLIENT_ID = 'your_kakao_client_id';
@@ -9,8 +9,6 @@ const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKA
 console.log(KAKAO_AUTH_URL); // 버튼 클릭 시 이 URL로 리디렉션
 */
 
-module.exports = {
-    kakaoApiKey: process.env.KAKAO_CLIENT_ID,
-    redirectURL: process.env.KAKAO_REDIRECT_URL,
-    kakaoMapApiUrl: process.env.KAKAO_MAP_API_URL,
-};
+export const kakaoApiKey = process.env.KAKAO_CLIENT_ID;
+export const redirectURL = process.env.KAKAO_REDIRECT_URL;
+export const kakaoMapApiUrl = process.env.KAKAO_MAP_API_URL;
