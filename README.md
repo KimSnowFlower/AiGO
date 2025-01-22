@@ -290,3 +290,8 @@ require('dotenv').config({ path: '../.env' }); <br>
 
 휴무
 <hr>
+
+# 2025/1/20~23 내용
+
+pkg 빌드 오류 원인 못 찾음...
+<hr>
