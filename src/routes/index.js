@@ -1,21 +1,14 @@
-import express from 'express';
-import authRoutes from './authRoutes';
-import locationRoutes from './locationRoutes';
-import profileRoutes from './profileRoutes';
-//import routeHelperRoutes from './routeHelperRoutes';
+const express = require('express');
+const authRoutes = require('./authRoutes');
+const locationRoutes = require('./locationRoutes');
+const profileRoutes = require('./profileRoutes');
+//const routeHelperRoutes = require('./routeHelperRoutes');
 
 const router = express.Router();
 
-// Auth Routes
 router.use('/auth', authRoutes);
-
-// Location Routes
 router.use('/location', locationRoutes);
-
-// Profile Routes - User
 router.use('/user', profileRoutes);
-
-// Route Helper Routes
 //router.use('/route-helper', routeHelperRoutes);
 
-export default router;
+module.exports = router;

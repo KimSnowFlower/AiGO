@@ -1,7 +1,6 @@
-import body from 'express-validator';
+const { body } = require('express-validator');
 
-// 회원가입 입력 검증
-export const validateAuthInput = [
+const validateAuthInput = [
   body('name')
     .isString().withMessage('Name must be a string')
     .notEmpty().withMessage('Name is required'),
@@ -19,8 +18,7 @@ export const validateAuthInput = [
     .notEmpty().withMessage('Region is required'),
 ];
 
-// 로그인 입력 검증
-export const validateLoginInput = [
+const validateLoginInput = [
   body('phone')
     .matches(/^\d{1,15}$/).withMessage('Phone must be a numeric string of up to 15 digits')
     .notEmpty().withMessage('Phone is required'),
@@ -29,8 +27,7 @@ export const validateLoginInput = [
     .notEmpty().withMessage('Password is required'),
 ];
 
-// 비밀번호 변경 입력 검증
-export const validatePasswordChangeInput = [
+const validatePasswordChangeInput = [
   body('currentPassword')
       .isLength({ min: 6 })
       .withMessage('Current password must be at least 6 characters long.'),
@@ -38,3 +35,5 @@ export const validatePasswordChangeInput = [
       .isLength({ min: 6 })
       .withMessage('New password must be at least 6 characters long.'),
 ];
+
+module.exports = { validateAuthInput, validateLoginInput, validatePasswordChangeInput };

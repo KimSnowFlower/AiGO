@@ -1,12 +1,9 @@
-import 'dotenv/config';
-import twilio from 'twilio';
+require('dotenv').config();
+const twilio = require('twilio');
 
-// Twilio 계정 SID
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-
-// Twilio 인증 토큰
-const authToken = process.env.TWILIO_AUTH_TOKEN;
+const accountSid = process.env.TWILIO_ACCOUNT_SID || 'default-sid';
+const authToken = process.env.TWILIO_AUTH_TOKEN || 'default-token';
 
 const twilioClient = twilio(accountSid, authToken);
 
-export default twilioClient;
+module.exports = twilioClient;

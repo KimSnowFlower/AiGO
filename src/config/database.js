@@ -1,13 +1,11 @@
-import 'dotenv/config';
-import mysql from 'mysql2/promise';
+const mysql = require('mysql2/promise');
 
-// 데이터베이스 연결 설정을 환경 변수로 관리
 const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: process.env.DB_HOST || 'localhost',
+  port: process.env.DB_PORT || 3306,
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'test_db',
 });
 
-export default db;
+module.exports = db;

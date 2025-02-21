@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { kakaoApiKey, kakaoMapApiUrl } from '../config/kakaoConfig';
+const axios = require('axios/dist/node/axios.cjs');
+const { kakaoApiKey, kakaoMapApiUrl } = require('../config/kakaoConfig');
 
-export const getLocationData = async (address) => {
+const getLocationData = async (address) => {
   try {
     const response = await axios.get(kakaoMapApiUrl, {
       params: { query: address },
@@ -15,3 +15,5 @@ export const getLocationData = async (address) => {
     throw error;
   }
 };
+
+module.exports = { getLocationData };

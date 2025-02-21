@@ -1,16 +1,12 @@
-import validationResult from 'express-validator';
-import authService from '../services/authService.js';
+const { validationResult } = require('express-validator');
+const authService = require('../services/authService.js');
 
-// 회원가입
-export const register = async (req, res) => {
+const register = async (req, res) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
     const { name, age, phone, password, region } = req.body;
-
     try {
         const result = await authService.registerUser({ name, age, phone, password, region });
         res.status(201).json(result);
@@ -20,16 +16,12 @@ export const register = async (req, res) => {
     }
 };
 
-// 로그인
-export const login = async (req, res) => {
+const login = async (req, res) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
     const { phone, password } = req.body;
-
     try {
         const response = await authService.loginUser(phone, password);
         res.status(200).json(response);
@@ -39,17 +31,13 @@ export const login = async (req, res) => {
     }
 };
 
-// 비밀번호 변경
-export const changePassword = async (req, res) => {
+const changePassword = async (req, res) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
     const { currentPassword, newPassword } = req.body;
-    const userId = req.user.id; // JWT 미들웨어에서 가져옴
-
+    const userId = req.user.id;
     try {
         const result = await authService.changeUserPassword(userId, currentPassword, newPassword);
         res.status(200).json(result);
@@ -58,3 +46,5 @@ export const changePassword = async (req, res) => {
         res.status(400).json({ error: 'Password update failed', details: error.message });
     }
 };
+
+module.exports = { register, login, changePassword };

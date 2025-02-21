@@ -1,16 +1,13 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
-// JWT 비밀키 및 기본 설정
 const JWT_SECRET = process.env.JWT_SECRET || 'default-secret';
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '24h';
 
-// 토큰 생성 함수
-export const generateToken = (payload) => {
+const generateToken = (payload) => {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 };
 
-// 토큰 검증 함수
-export const verifyToken = (token) => {
+const verifyToken = (token) => {
   try {
     return jwt.verify(token, JWT_SECRET);
   } catch (error) {
@@ -24,7 +21,8 @@ export const verifyToken = (token) => {
   }
 };
 
-// 토큰 디코드 함수 (유효성 검증 없이 디코드만)
-export const decodeToken = (token) => {
+const decodeToken = (token) => {
   return jwt.decode(token);
 };
+
+module.exports = { generateToken, verifyToken, decodeToken };

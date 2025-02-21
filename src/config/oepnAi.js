@@ -1,3 +1,5 @@
-import 'dotenv/config';
+require('dotenv').config();
 
-export const OPEN_API_KEY = process.env.OPEN_API_KEY;
+const OPEN_API_KEY = process.env.OPEN_API_KEY || 'default_key';
+
+module.exports = { OPEN_API_KEY };

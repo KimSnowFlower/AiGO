@@ -1,12 +1,10 @@
-import locationService from '../services/locationService.js';
+const locationService = require('../services/locationService.js');
 
-export const getLocation = async (req, res) => {
+const getLocation = async (req, res) => {
   const { address } = req.query;
-
   if (!address) {
     return res.status(400).send('주소를 제공해 주세요.');
   }
-
   try {
     const data = await locationService.getLocationData(address);
     res.json(data);
@@ -14,3 +12,5 @@ export const getLocation = async (req, res) => {
     res.status(500).send('서버 오류');
   }
 };
+
+module.exports = { getLocation };
