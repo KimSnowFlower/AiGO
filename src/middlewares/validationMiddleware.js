@@ -1,6 +1,6 @@
-const { body } = require('express-validator');
+import { body } from 'express-validator';
 
-const validateAuthInput = [
+export const validateAuthInput = [
   body('name')
     .isString().withMessage('Name must be a string')
     .notEmpty().withMessage('Name is required'),
@@ -18,7 +18,7 @@ const validateAuthInput = [
     .notEmpty().withMessage('Region is required'),
 ];
 
-const validateLoginInput = [
+export const validateLoginInput = [
   body('phone')
     .matches(/^\d{1,15}$/).withMessage('Phone must be a numeric string of up to 15 digits')
     .notEmpty().withMessage('Phone is required'),
@@ -27,7 +27,7 @@ const validateLoginInput = [
     .notEmpty().withMessage('Password is required'),
 ];
 
-const validatePasswordChangeInput = [
+export const validatePasswordChangeInput = [
   body('currentPassword')
       .isLength({ min: 6 })
       .withMessage('Current password must be at least 6 characters long.'),
@@ -35,5 +35,3 @@ const validatePasswordChangeInput = [
       .isLength({ min: 6 })
       .withMessage('New password must be at least 6 characters long.'),
 ];
-
-module.exports = { validateAuthInput, validateLoginInput, validatePasswordChangeInput };

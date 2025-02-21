@@ -1,12 +1,12 @@
-const axios = require('axios/dist/node/axios.cjs');
-const kakaoConfig = require('../config/kakaoConfig.js');
+import axios from 'axios';
+import { kakaoApiKey, redirectURL } from '../config/kakaoConfig.js';
 
-const getKakaoToken = async (code) => {
+export const getKakaoToken = async (code) => {
     const url = 'https://kauth.kakao.com/oauth/token';
     const params = {
         grant_type: 'authorization_code',
-        client_id: kakaoConfig.kakaoApiKey, // `clientID` 대신 `kakaoApiKey`로 수정 (kakaoConfig와 일치)
-        redirect_uri: kakaoConfig.redirectURL, // `redirectURI` 대신 `redirectURL`로 수정
+        client_id: kakaoApiKey,
+        redirect_uri: redirectURL,
         code,
     };
     try {
@@ -18,7 +18,7 @@ const getKakaoToken = async (code) => {
     }
 };
 
-const getKakaoUserInfo = async (accessToken) => {
+export const getKakaoUserInfo = async (accessToken) => {
     const url = 'https://kapi.kakao.com/v2/user/me';
     try {
         const response = await axios.get(url, {
@@ -30,5 +30,3 @@ const getKakaoUserInfo = async (accessToken) => {
         throw new Error('Failed to get Kakao user info');
     }
 };
-
-module.exports = { getKakaoToken, getKakaoUserInfo };

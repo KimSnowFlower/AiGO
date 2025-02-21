@@ -1,6 +1,6 @@
-const db = require('../config/database');
+import db from '../config/database.js';
 
-const getProfile = async (userId) => {
+export const getProfile = async (userId) => {
     try {
         const [rows] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
         if (rows.length === 0) {
@@ -11,5 +11,3 @@ const getProfile = async (userId) => {
         throw new Error('Profile retrieval failed');
     }
 };
-
-module.exports = { getProfile };

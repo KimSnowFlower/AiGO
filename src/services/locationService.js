@@ -1,7 +1,7 @@
-const axios = require('axios/dist/node/axios.cjs');
-const { kakaoApiKey, kakaoMapApiUrl } = require('../config/kakaoConfig');
+import axios from 'axios'; // ESM 환경에서는 기본 경로 사용
+import { kakaoApiKey, kakaoMapApiUrl } from '../config/kakaoConfig.js';
 
-const getLocationData = async (address) => {
+export const getLocationData = async (address) => {
   try {
     const response = await axios.get(kakaoMapApiUrl, {
       params: { query: address },
@@ -15,5 +15,3 @@ const getLocationData = async (address) => {
     throw error;
   }
 };
-
-module.exports = { getLocationData };

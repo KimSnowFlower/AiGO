@@ -1,10 +1,10 @@
-require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const http = require('http');
-const routes = require('./routes/index.js');
-const db = require('./config/database.js');
+import 'dotenv/config';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import http from 'http';
+import routes from './routes/index.js';
+import db from './config/database.js';
 
 console.log(db);
 

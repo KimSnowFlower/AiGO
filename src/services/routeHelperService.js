@@ -1,7 +1,7 @@
-const axios = require('axios/dist/node/axios.cjs');
-const openApi = require('../config/oepnAi.js');
+import axios from 'axios';
+import { OPEN_API_KEY } from '../config/oepnAi.js'; // openApi 객체 대신 직접 import
 
-const getRoute = async (origin, destination, text) => {
+export const getRoute = async (origin, destination, text) => {
     if (!origin || !destination || !text) {
         throw new Error('출발지, 도착지 및 프롬프트 텍스트는 필수입니다.');
     }
@@ -18,7 +18,7 @@ const getRoute = async (origin, destination, text) => {
             },
             {
                 headers: {
-                    'Authorization': `Bearer ${openApi.OPEN_API_KEY}`,
+                    'Authorization': `Bearer ${OPEN_API_KEY}`,
                     'Content-Type': 'application/json',
                 },
             }
@@ -33,5 +33,3 @@ const getRoute = async (origin, destination, text) => {
         throw new Error('경로 안내를 가져오는 중 문제가 발생했습니다. 다시 시도해주세요.');
     }
 };
-
-module.exports = { getRoute };

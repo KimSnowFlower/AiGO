@@ -1,8 +1,8 @@
-const bcrypt = require('bcryptjs');
-const db = require('../config/database.js');
-const { generateToken } = require('../config/jwt.js');
+import bcrypt from 'bcryptjs';
+import db from '../config/database.js';
+import { generateToken } from '../config/jwt.js';
 
-const registerUser = async ({ name, age, phone, password, region }) => {
+export const registerUser = async ({ name, age, phone, password, region }) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
         const sql = `
@@ -17,7 +17,7 @@ const registerUser = async ({ name, age, phone, password, region }) => {
     }
 };
 
-const loginUser = async (phone, password) => {
+export const loginUser = async (phone, password) => {
     try {
         const sql = 'SELECT * FROM users WHERE phone = ?';
         const [results] = await db.query(sql, [phone]);
@@ -37,7 +37,7 @@ const loginUser = async (phone, password) => {
     }
 };
 
-const changeUserPassword = async (userId, currentPassword, newPassword) => {
+export const changeUserPassword = async (userId, currentPassword, newPassword) => {
     try {
         const sql = 'SELECT * FROM users WHERE id = ?';
         const [results] = await db.query(sql, [userId]);
@@ -58,5 +58,3 @@ const changeUserPassword = async (userId, currentPassword, newPassword) => {
         throw new Error('Failed to change password');
     }
 };
-
-module.exports = { registerUser, loginUser, changeUserPassword };

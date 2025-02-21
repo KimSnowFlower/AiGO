@@ -1,6 +1,6 @@
-const profileService = require('../services/profileService.js');
+import profileService from '../services/profileService.js';
 
-const getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
     try {
         const userId = req.user.id;
         const profile = await profileService.getProfile(userId);
@@ -9,5 +9,3 @@ const getProfile = async (req, res) => {
         res.status(500).json({ error: 'Profile retrieval failed', details: error.message });
     }
 };
-
-module.exports = { getProfile };

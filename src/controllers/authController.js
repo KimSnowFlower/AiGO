@@ -1,7 +1,7 @@
-const { validationResult } = require('express-validator');
-const authService = require('../services/authService.js');
+import { validationResult } from 'express-validator';
+import authService from '../services/authService.js';
 
-const register = async (req, res) => {
+export const register = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -16,7 +16,7 @@ const register = async (req, res) => {
     }
 };
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -31,7 +31,7 @@ const login = async (req, res) => {
     }
 };
 
-const changePassword = async (req, res) => {
+export const changePassword = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -46,5 +46,3 @@ const changePassword = async (req, res) => {
         res.status(400).json({ error: 'Password update failed', details: error.message });
     }
 };
-
-module.exports = { register, login, changePassword };
