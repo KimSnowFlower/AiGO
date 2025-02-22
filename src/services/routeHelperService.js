@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { OPEN_API_KEY } from '../config/oepnAi.js'; // openApi 객체 대신 직접 import
+import { OPEN_API_KEY } from '../config/openAi.js'; // openApi 객체 대신 직접 import
 
 export const getRoute = async (origin, destination, text) => {
     if (!origin || !destination || !text) {

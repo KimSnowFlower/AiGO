@@ -5,7 +5,8 @@ const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKA
 console.log(KAKAO_AUTH_URL); // 버튼 클릭 시 이 URL로 리디렉션
 */
 
-import 'dotenv/config';
+import { config } from 'dotenv';
+config();
 
 export const kakaoApiKey = process.env.KAKAO_CLIENT_ID || 'default-id';
 export const redirectURL = process.env.KAKAO_REDIRECT_URL || 'http://localhost:3000/callback';
