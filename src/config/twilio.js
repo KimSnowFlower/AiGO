@@ -1,5 +1,5 @@
-import { config } from 'dotenv';
-config();
+import dotenv from 'dotenv';
+dotenv.config();
 import twilio from 'twilio';
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID || 'default-sid';
