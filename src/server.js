@@ -5,8 +5,6 @@ import http from 'http';
 import routes from './routes/index.js';
 import db from './config/database.js';
 
-console.log(db);
-
 const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 8080;
